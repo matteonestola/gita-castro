@@ -411,17 +411,17 @@
         </a>
         <a class="map-link" href="https://maps.app.goo.gl/Gvq3DAdTPehwGF2MA" target="_blank" rel="noopener">
           <div class="pin"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="12" rx="2"/><path d="M7 7V5a2 2 0 012-2h6a2 2 0 012 2v2"/></svg></div>
-          <div class="info"><b>Parcheggio 1</b><span>Opzione principale, vicino a mare vivo</span></div>
+          <div class="info"><b>Parcheggio 1 — Castro</b><span>Opzione principale, vicino al ritrovo</span></div>
           <span class="go">apri mappa ↗</span>
         </a>
         <a class="map-link" href="https://maps.app.goo.gl/96Azr8pxTiVWjwo68" target="_blank" rel="noopener">
           <div class="pin"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="12" rx="2"/><path d="M7 7V5a2 2 0 012-2h6a2 2 0 012 2v2"/></svg></div>
-          <div class="info"><b>Parcheggio 2</b><span>Alternativa se il primo è pieno</span></div>
+          <div class="info"><b>Parcheggio 2 — Castro</b><span>Alternativa se il primo è pieno</span></div>
           <span class="go">apri mappa ↗</span>
         </a>
         <a class="map-link" href="https://maps.app.goo.gl/VGMm8u4N9GUpFe248" target="_blank" rel="noopener">
           <div class="pin"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="12" rx="2"/><path d="M7 7V5a2 2 0 012-2h6a2 2 0 012 2v2"/></svg></div>
-          <div class="info"><b>Parcheggio "leccese"</b><span>Per i più audaci — più vicino al porto</span></div>
+          <div class="info"><b>Parcheggio "leccese"</b><span>Per i più audaci — più lontano</span></div>
           <span class="go">apri mappa ↗</span>
         </a>
       </div>
@@ -550,7 +550,7 @@
   <div class="wrap">
     <section>
       <div class="fb-warning" id="fb-warning">
-        ⚠️ Il database non è ancora configurato: aggiungi le tue chiavi Firebase in <code>firebaseConfig</code> nel file <code>index.html</code> per rendere la Cambusa condivisa e in tempo reale.
+        ⚠️ Il database non è ancora configurato: aggiungi le tue chiavi Firebase nel file <code>config.js</code> per rendere la Cambusa condivisa e in tempo reale.
       </div>
       <form class="cambusa-form" id="cambusa-form">
         <input type="text" id="c-nome" placeholder="Cosa porti (es. Acqua)" required>
@@ -637,6 +637,8 @@
 <!-- Firebase (per la Cambusa condivisa) -->
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
+<!-- Le chiavi Firebase vivono in config.js, così si aggiorna index.html senza toccarle -->
+<script src="config.js"></script>
 <script>
   /* ============ TAB NAVIGATION ============ */
   const tabBtns = document.querySelectorAll('.tab-btn');
@@ -709,17 +711,8 @@
   setInterval(updateCountdown, 1000);
 
   /* ============ CAMBUSA (Firebase Realtime Database) ============
-     1. Crea un progetto gratuito su https://console.firebase.google.com
-     2. Attiva "Realtime Database" (modalità test, oppure con le regole in fondo a questo file)
-     3. Copia qui sotto la configurazione del tuo progetto (Project settings → SDK setup and config)
+     firebaseConfig arriva da config.js, caricato prima di questo script.
   */
-  const firebaseConfig = {
-    apiKey: "AIzaSyDnabwvnDEYL7S0wHdJVw7L0jh3eJZVl-E",
-    authDomain: "gita-castro.firebaseapp.com",
-    databaseURL: "https://gita-castro-default-rtdb.europe-west1.firebasedatabase.app",
-    projectId: "gita-castro",
-  };
-
   const cambusaForm = document.getElementById('cambusa-form');
   const cambusaList = document.getElementById('cambusa-list');
   const fbWarning = document.getElementById('fb-warning');
@@ -735,7 +728,7 @@
   modalCancel.addEventListener('click', closeModal);
   editModal.addEventListener('click', function(e){ if(e.target === editModal) closeModal(); });
 
-  const isConfigured = firebaseConfig.apiKey && !firebaseConfig.apiKey.includes('YOUR_');
+  const isConfigured = typeof firebaseConfig !== 'undefined' && firebaseConfig.apiKey && !firebaseConfig.apiKey.includes('YOUR_');
 
   if(!isConfigured){
     fbWarning.style.display = 'block';
