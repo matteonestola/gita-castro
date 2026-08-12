@@ -3,7 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Castro Marina · 15 Agosto</title>
+<title>Castro Marina · 15 Agosto Purpi a mare</title>
+<link rel="icon" type="image/jpeg" href="purpi.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,500&family=Space+Mono:wght@400;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -85,6 +86,12 @@
     color:var(--paper);
   }
   .tab-desc{margin-top:12px; font-size:15px; color:var(--text-soft); max-width:52ch;}
+
+  .title-row{display:flex; align-items:center; gap:16px;}
+  .purpi-icon{
+    width:56px; height:56px; border-radius:14px; object-fit:cover; flex:none;
+    border:2px solid var(--brass); box-shadow:0 6px 16px rgba(0,0,0,0.35);
+  }
 
   /* ---------- PAGES ---------- */
   .page{display:none;}
@@ -357,6 +364,7 @@
     .cambusa-form{flex-direction:column;}
     .countdown-digits{gap:10px;}
     .cd-unit{min-width:44px;}
+    .purpi-icon{width:44px; height:44px; border-radius:11px;}
   }
 </style>
 </head>
@@ -367,7 +375,7 @@
   <div class="tab-intro">
     <div class="tab-intro-inner">
       <div class="eyebrow">40°0′N · 18°25′E — Castro Marina, Salento</div>
-      <h1 class="tab-title">15 agosto</h1>
+      <div class="title-row"><img class="purpi-icon" src="purpi.jpg" alt="Purpi, la mascotte della gita"><h1 class="tab-title">15 Agosto<br>Purpi a mare</h1></div>
       <p class="tab-desc">Gli orari chiave della giornata. Per la rotta completa e cosa portare, guarda le altre sezioni.</p>
     </div>
   </div>
@@ -401,14 +409,20 @@
       <div class="orario-card"><span class="k">Riconsegna entro</span><span class="v">19:00</span></div>
     </div>
 
-    <section id="dove">
-      <div class="section-head"><h2 class="section-title">Dove parcheggiare e ritrovarsi</h2></div>
+    <section id="ritrovo">
+      <div class="section-head"><h2 class="section-title">Ritrovo</h2></div>
       <div class="map-list">
         <a class="map-link" href="https://maps.app.goo.gl/EMMejQTa348E1pq19" target="_blank" rel="noopener">
           <div class="pin"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5" r="2.3"/><line x1="12" y1="7.3" x2="12" y2="21"/><path d="M5 12H3a9 9 0 0018 0h-2"/></svg></div>
           <div class="info"><b>Punto di ritrovo — Porto</b><span>Ritrovo alle 8:30, direttamente al porto</span></div>
           <span class="go">apri mappa ↗</span>
         </a>
+      </div>
+    </section>
+
+    <section id="dove">
+      <div class="section-head"><h2 class="section-title">Dove parcheggiare</h2></div>
+      <div class="map-list">
         <a class="map-link" href="https://maps.app.goo.gl/Gvq3DAdTPehwGF2MA" target="_blank" rel="noopener">
           <div class="pin"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="4"/><path d="M9 7v10M9 7h3.2a2.4 2.4 0 010 4.8H9"/></svg></div>
           <div class="info"><b>Parcheggio 1</b><span>Opzione principale, vicino a mare vivo</span></div>
@@ -433,6 +447,17 @@
         <a class="map-link instagram" href="https://www.instagram.com/durlindananoleggiobarche?igsh=MXRjcnlvdzZocHpnaQ==" target="_blank" rel="noopener">
           <div class="pin"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1"/></svg></div>
           <div class="info"><b>Durlindana Noleggio Barche</b><span>La barca che abbiamo noleggiato — pagina Instagram</span></div>
+          <span class="go">apri ↗</span>
+        </a>
+      </div>
+    </section>
+
+    <section id="playlist">
+      <div class="section-head"><h2 class="section-title">Playlist da crociera</h2></div>
+      <div class="map-list">
+        <a class="map-link instagram" href="https://open.spotify.com/playlist/5XUrriBJQu7gOh0dHtHsIV?si=ODKSuK-6RN2cz3_SIuKm9A&utm_source=whatsapp&pt=211645371810362c35151d929b8c0853&pi=EtqQhhGiS0WTq" target="_blank" rel="noopener">
+          <div class="pin"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M7.5 10c3-1 6.5-1 9 .5M7.8 13c2.4-0.8 5.2-0.7 7.2 0.4M8.2 15.7c1.9-0.6 4-0.5 5.6 0.4"/></svg></div>
+          <div class="info"><b>Playlist Spotify del gruppo</b><span>Le canzoni per la giornata in barca</span></div>
           <span class="go">apri ↗</span>
         </a>
       </div>
@@ -464,6 +489,14 @@
         <div class="check-item" data-key="cibo">
           <div class="check-box"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5L4.5 8.5L11 1.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
           <div class="check-text"><div class="check-label">Cibo e bevande</div><div class="check-sub">Gestiti a parte — occhio anche alla Cambusa!</div></div>
+        </div>
+        <div class="check-item" data-key="cappelli">
+          <div class="check-box"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5L4.5 8.5L11 1.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div class="check-text"><div class="check-label">Cappelli e cappellini</div></div>
+        </div>
+        <div class="check-item" data-key="cartegioco">
+          <div class="check-box"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5L4.5 8.5L11 1.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div class="check-text"><div class="check-label">Carte da gioco</div></div>
         </div>
       </div>
     </section>
