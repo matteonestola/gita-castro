@@ -28,42 +28,41 @@
     font-family:'Inter',sans-serif;
     line-height:1.5;
     -webkit-font-smoothing:antialiased;
-    padding-top:66px;
+    padding-bottom:calc(78px + env(safe-area-inset-bottom));
   }
   .wrap{max-width:760px; margin:0 auto; padding:0 24px;}
   a{color:inherit;}
 
-  /* ---------- TOP NAV ---------- */
-  .topnav{
-    position:fixed; top:0; left:0; right:0; z-index:50;
-    background:rgba(11,42,62,0.92);
+  /* ---------- BOTTOM TAB BAR ---------- */
+  .tabbar{
+    position:fixed; left:0; right:0; bottom:0; z-index:50;
+    background:rgba(11,42,62,0.94);
     backdrop-filter:blur(10px);
-    border-bottom:1px solid rgba(242,235,216,0.12);
+    border-top:1px solid rgba(242,235,216,0.14);
+    padding-bottom:env(safe-area-inset-bottom);
   }
-  .topnav-inner{
-    max-width:760px; margin:0 auto; padding:0 20px;
-    display:flex; align-items:center; justify-content:space-between;
+  .tabbar-inner{
+    max-width:760px; margin:0 auto;
+    display:flex; justify-content:space-around; align-items:stretch;
     height:66px;
   }
-  .brand{
-    font-family:'Fraunces',serif; font-weight:600; font-size:16px;
-    display:flex; align-items:center; gap:8px; white-space:nowrap;
-  }
-  .brand .dot{width:6px; height:6px; border-radius:50%; background:var(--coral);}
-  .tabs{display:flex; gap:2px;}
   .tab-btn{
-    background:none; border:none; cursor:pointer;
-    display:flex; flex-direction:column; align-items:center; gap:3px;
-    padding:8px 10px; border-radius:10px;
+    flex:1; background:none; border:none; cursor:pointer;
+    display:flex; flex-direction:column; align-items:center; justify-content:center; gap:4px;
     color:var(--text-soft);
-    font-family:'Inter',sans-serif; font-size:10px; font-weight:600;
-    letter-spacing:0.02em; text-transform:uppercase;
-    transition:background .15s, color .15s;
+    font-family:'Inter',sans-serif; font-size:10.5px; font-weight:600;
+    letter-spacing:0.02em;
+    transition:color .15s;
+    position:relative;
   }
-  .tab-btn svg{width:18px; height:18px; stroke:currentColor;}
-  .tab-btn:hover{color:var(--paper); background:rgba(242,235,216,0.06);}
-  .tab-btn.active{color:var(--ink); background:var(--brass);}
-  .tab-btn:focus-visible{outline:2px solid var(--teal); outline-offset:2px;}
+  .tab-btn svg{width:21px; height:21px; stroke:currentColor; transition:transform .15s;}
+  .tab-btn.active{color:var(--brass);}
+  .tab-btn.active svg{transform:translateY(-1px);}
+  .tab-btn.active::before{
+    content:""; position:absolute; top:0; left:50%; transform:translateX(-50%);
+    width:26px; height:3px; border-radius:0 0 4px 4px; background:var(--brass);
+  }
+  .tab-btn:focus-visible{outline:2px solid var(--teal); outline-offset:-2px;}
 
   /* ---------- TAB INTRO ---------- */
   .tab-intro{
@@ -97,8 +96,67 @@
     font-size:clamp(24px,5vw,30px); color:var(--paper);
   }
 
+  /* ---------- COUNTDOWN ---------- */
+  .countdown-card{
+    margin-top:44px;
+    position:relative;
+    background:linear-gradient(180deg, var(--ink-2), var(--ink-3));
+    border:1px solid rgba(242,235,216,0.12);
+    border-radius:18px;
+    padding:30px 26px 0;
+    overflow:hidden;
+  }
+  .countdown-label{
+    font-family:'Space Mono',monospace; font-size:12px; letter-spacing:0.1em;
+    text-transform:uppercase; color:var(--brass); text-align:center; margin-bottom:18px;
+  }
+  .countdown-digits{
+    display:flex; justify-content:center; gap:18px; padding-bottom:6px;
+  }
+  .cd-unit{text-align:center; min-width:52px;}
+  .cd-num{
+    font-family:'Fraunces',serif; font-weight:600; font-size:clamp(30px,8vw,40px);
+    color:var(--paper); font-variant-numeric:tabular-nums;
+  }
+  .cd-unit-label{font-family:'Space Mono',monospace; font-size:10px; color:var(--text-soft); text-transform:uppercase; letter-spacing:0.08em;}
+  .sea{
+    position:relative; height:70px; margin-top:14px;
+    background:repeating-linear-gradient(180deg, transparent 0, transparent 10px, rgba(44,140,130,0.14) 10px, rgba(44,140,130,0.14) 11px);
+    overflow:hidden;
+  }
+  .boat{
+    position:absolute; bottom:14px; left:50%; transform:translateX(-50%);
+    width:46px; height:38px;
+    animation:bob 3s ease-in-out infinite;
+  }
+  .boat svg{width:100%; height:100%;}
+  @keyframes bob{
+    0%,100%{transform:translateX(-50%) translateY(0);}
+    50%{transform:translateX(-50%) translateY(-5px);}
+  }
+  .countdown-card.sailing .boat{
+    left:-10%; bottom:16px;
+    animation:sail 9s linear infinite;
+  }
+  @keyframes sail{
+    0%{left:-10%; transform:translateY(0);}
+    50%{transform:translateY(-4px);}
+    100%{left:105%; transform:translateY(0);}
+  }
+  .countdown-card.done .boat{
+    left:50%; bottom:20px; transform:translateX(-50%);
+    animation:none;
+  }
+  .countdown-status{
+    font-family:'Fraunces',serif; font-size:20px; font-style:italic; color:var(--paper);
+    text-align:center;
+  }
+  @media (prefers-reduced-motion:reduce){
+    .boat, .countdown-card.sailing .boat{animation:none !important;}
+  }
+
   /* ---------- HOME: orari ---------- */
-  .orari-grid{display:flex; gap:16px; flex-wrap:wrap; padding:44px 0 8px;}
+  .orari-grid{display:flex; gap:16px; flex-wrap:wrap; padding:36px 0 8px;}
   .orario-card{
     flex:1; min-width:140px;
     background:var(--ink-2); border:1px solid rgba(242,235,216,0.1);
@@ -110,7 +168,7 @@
   }
   .orario-card .v{font-family:'Fraunces',serif; font-size:32px; color:var(--paper);}
 
-  /* ---------- MAP LINKS ---------- */
+  /* ---------- LINK LIST (map + instagram) ---------- */
   .map-list{display:flex; flex-direction:column; gap:10px;}
   .map-link{
     display:flex; align-items:center; gap:14px;
@@ -124,6 +182,8 @@
     background:rgba(44,140,130,0.15); display:flex; align-items:center; justify-content:center;
   }
   .map-link .pin svg{width:16px; height:16px; stroke:var(--teal);}
+  .map-link.instagram .pin{background:rgba(232,98,61,0.15);}
+  .map-link.instagram .pin svg{stroke:var(--coral);}
   .map-link .info b{font-family:'Inter',sans-serif; font-size:15px; font-weight:600; color:var(--paper); display:block;}
   .map-link .info span{font-size:12px; color:var(--text-soft);}
   .map-link .go{margin-left:auto; color:var(--text-soft); font-size:13px;}
@@ -207,28 +267,55 @@
   .cambusa-form button:hover{transform:translateY(-1px);}
   .cambusa-list{display:flex; flex-direction:column; gap:10px;}
   .cambusa-item{
-    display:flex; align-items:center; gap:14px; background:var(--ink-2);
+    display:flex; align-items:center; gap:10px; background:var(--ink-2);
     border:1px solid rgba(242,235,216,0.1); border-radius:12px; padding:14px 16px;
   }
-  .cambusa-item .info{flex:1;}
+  .cambusa-item .info{flex:1; min-width:0;}
   .cambusa-item .info b{font-family:'Inter',sans-serif; font-size:15px; font-weight:600; color:var(--paper); display:block;}
   .cambusa-item .info span{font-size:12px; color:var(--text-soft);}
   .cambusa-item .qty{
     font-family:'Space Mono',monospace; font-size:13px; color:var(--brass);
     background:rgba(201,161,92,0.12); padding:4px 10px; border-radius:20px; white-space:nowrap;
   }
-  .cambusa-item .del{
-    flex:none; width:30px; height:30px; border-radius:50%; border:none;
-    background:rgba(232,98,61,0.12); color:var(--coral); cursor:pointer;
+  .icon-btn{
+    flex:none; width:30px; height:30px; border-radius:50%; border:none; cursor:pointer;
     display:flex; align-items:center; justify-content:center; transition:background .15s;
   }
-  .cambusa-item .del:hover{background:var(--coral); color:#fff;}
-  .cambusa-item .del svg{width:14px; height:14px;}
+  .icon-btn svg{width:14px; height:14px;}
+  .icon-btn.edit{background:rgba(44,140,130,0.14); color:var(--teal);}
+  .icon-btn.edit:hover{background:var(--teal); color:#fff;}
+  .icon-btn.del{background:rgba(232,98,61,0.12); color:var(--coral);}
+  .icon-btn.del:hover{background:var(--coral); color:#fff;}
   .cambusa-empty{color:var(--text-soft); font-size:14px; padding:20px 4px; text-align:center;}
   .fb-warning{
     background:rgba(232,98,61,0.12); border-left:3px solid var(--coral); border-radius:0 8px 8px 0;
     padding:14px 18px; font-size:13px; color:var(--paper); margin-bottom:20px; display:none;
   }
+
+  /* ---------- MODAL ---------- */
+  .modal-overlay{
+    position:fixed; inset:0; background:rgba(11,42,62,0.72); backdrop-filter:blur(2px);
+    display:none; align-items:center; justify-content:center; z-index:100; padding:24px;
+  }
+  .modal-overlay.open{display:flex;}
+  .modal-card{
+    background:var(--paper); border-radius:16px; padding:26px 24px; width:100%; max-width:360px;
+  }
+  .modal-title{font-family:'Fraunces',serif; font-weight:600; font-size:20px; color:var(--text-dark); margin-bottom:4px;}
+  .modal-sub{font-size:13px; color:#5a6b78; margin-bottom:18px;}
+  .modal-field{margin-bottom:14px;}
+  .modal-field label{display:block; font-family:'Space Mono',monospace; font-size:11px; text-transform:uppercase; letter-spacing:0.06em; color:#5a6b78; margin-bottom:6px;}
+  .modal-field input{
+    width:100%; padding:11px 12px; border-radius:8px; border:1.5px solid var(--paper-dim);
+    background:#fff; font-family:'Inter',sans-serif; font-size:14px; color:var(--text-dark);
+  }
+  .modal-field input:focus{outline:none; border-color:var(--teal);}
+  .modal-actions{display:flex; gap:10px; margin-top:20px;}
+  .modal-actions button{
+    flex:1; border:none; border-radius:8px; padding:11px; font-family:'Inter',sans-serif; font-weight:600; font-size:14px; cursor:pointer;
+  }
+  .modal-cancel{background:var(--paper-dim); color:var(--text-dark);}
+  .modal-save{background:var(--teal); color:#fff;}
 
   /* ---------- SPESE ---------- */
   .tricount-card{
@@ -246,44 +333,34 @@
   .btn:hover{transform:translateY(-2px); box-shadow:0 8px 20px rgba(232,98,61,0.35);}
   .btn:focus-visible{outline:2px solid var(--paper); outline-offset:3px;}
 
-  footer{text-align:center; padding:48px 24px 64px; color:var(--text-soft); font-size:13px; font-family:'Space Mono',monospace;}
+  footer{text-align:center; padding:44px 24px 24px; color:var(--text-soft); font-size:13px; font-family:'Space Mono',monospace;}
+
+  /* ---------- SHARE FAB ---------- */
+  .fab-share{
+    position:fixed; right:18px;
+    bottom:calc(84px + env(safe-area-inset-bottom));
+    z-index:60;
+    width:52px; height:52px; border-radius:50%; border:none; cursor:pointer;
+    background:var(--coral); color:#fff;
+    display:flex; align-items:center; justify-content:center;
+    box-shadow:0 8px 20px rgba(232,98,61,0.4);
+    transition:transform .15s, box-shadow .15s;
+  }
+  .fab-share svg{width:22px; height:22px;}
+  .fab-share:hover{transform:translateY(-2px) scale(1.04); box-shadow:0 10px 24px rgba(232,98,61,0.5);}
+  .fab-share:focus-visible{outline:2px solid var(--paper); outline-offset:3px;}
 
   @media (prefers-reduced-motion:reduce){ html{scroll-behavior:auto;} *{transition:none !important;} }
 
   @media (max-width:560px){
-    .brand span.full{display:none;}
-    .tab-btn{padding:8px 8px;}
-    .tab-btn .lbl{font-size:9px;}
     .tricount-card{flex-direction:column; align-items:flex-start;}
     .cambusa-form{flex-direction:column;}
+    .countdown-digits{gap:10px;}
+    .cd-unit{min-width:44px;}
   }
 </style>
 </head>
 <body>
-
-<nav class="topnav">
-  <div class="topnav-inner">
-    <div class="brand"><span class="dot"></span><span class="full">Castro Marina</span></div>
-    <div class="tabs" id="tabs">
-      <button class="tab-btn active" data-page="home">
-        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-7 9 7"/><path d="M5 10v9h14v-9"/></svg>
-        <span class="lbl">Home</span>
-      </button>
-      <button class="tab-btn" data-page="rotta">
-        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M14.5 9.5l-2 5-5 2 2-5z"/></svg>
-        <span class="lbl">Rotta</span>
-      </button>
-      <button class="tab-btn" data-page="cambusa">
-        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9h16l-1.5 10a2 2 0 01-2 1.7H7.5a2 2 0 01-2-1.7z"/><path d="M8 9V6a4 4 0 018 0v3"/></svg>
-        <span class="lbl">Cambusa</span>
-      </button>
-      <button class="tab-btn" data-page="spese">
-        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.2c0-1.2 1.1-2.2 2.5-2.2s2.5.8 2.5 1.9-1 1.6-2.5 1.9-2.5 1-2.5 2.1 1.1 1.9 2.5 1.9 2.5-.9 2.5-2"/></svg>
-        <span class="lbl">Spese</span>
-      </button>
-    </div>
-  </div>
-</nav>
 
 <!-- ============ HOME ============ -->
 <div class="page active" id="page-home">
@@ -295,6 +372,28 @@
     </div>
   </div>
   <div class="wrap">
+
+    <div class="countdown-card" id="countdown-card">
+      <div class="countdown-label" id="countdown-label">Si salpa tra</div>
+      <div class="countdown-digits" id="countdown-digits">
+        <div class="cd-unit"><div class="cd-num" id="cd-days">--</div><div class="cd-unit-label">giorni</div></div>
+        <div class="cd-unit"><div class="cd-num" id="cd-hours">--</div><div class="cd-unit-label">ore</div></div>
+        <div class="cd-unit"><div class="cd-num" id="cd-mins">--</div><div class="cd-unit-label">min</div></div>
+        <div class="cd-unit"><div class="cd-num" id="cd-secs">--</div><div class="cd-unit-label">sec</div></div>
+      </div>
+      <div class="countdown-status" id="countdown-status" style="display:none;"></div>
+      <div class="sea">
+        <div class="boat">
+          <svg viewBox="0 0 46 38" fill="none">
+            <path d="M4 26h38l-4 7H8z" fill="#C9A15C"/>
+            <path d="M23 6v20" stroke="#F2EBD8" stroke-width="2"/>
+            <path d="M23 7l13 12H23z" fill="#F2EBD8"/>
+            <path d="M23 12l-9 9h9z" fill="#2C8C82"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+
     <div class="orari-grid">
       <div class="orario-card"><span class="k">Ritrovo</span><span class="v">8:30</span></div>
       <div class="orario-card"><span class="k">Partenza barca</span><span class="v">9:00</span></div>
@@ -303,9 +402,7 @@
     </div>
 
     <section id="dove">
-      <div class="section-head">
-        <h2 class="section-title">Dove parcheggiare e ritrovarsi</h2>
-      </div>
+      <div class="section-head"><h2 class="section-title">Dove parcheggiare e ritrovarsi</h2></div>
       <div class="map-list">
         <a class="map-link" href="https://maps.app.goo.gl/EMMejQTa348E1pq19" target="_blank" rel="noopener">
           <div class="pin"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.5-7-11.5A7 7 0 0119 9.5C19 14.5 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.3"/></svg></div>
@@ -330,10 +427,19 @@
       </div>
     </section>
 
-    <section id="checklist">
-      <div class="section-head">
-        <h2 class="section-title">Cosa portare</h2>
+    <section id="noleggio">
+      <div class="section-head"><h2 class="section-title">Il noleggio</h2></div>
+      <div class="map-list">
+        <a class="map-link instagram" href="https://www.instagram.com/durlindananoleggiobarche?igsh=MXRjcnlvdzZocHpnaQ==" target="_blank" rel="noopener">
+          <div class="pin"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1"/></svg></div>
+          <div class="info"><b>Durlindana Noleggio Barche</b><span>La barca che abbiamo noleggiato — pagina Instagram</span></div>
+          <span class="go">apri ↗</span>
+        </a>
       </div>
+    </section>
+
+    <section id="checklist">
+      <div class="section-head"><h2 class="section-title">Cosa portare</h2></div>
       <div class="checklist" id="checklist-list">
         <div class="check-item" data-key="bagagli">
           <div class="check-box"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5L4.5 8.5L11 1.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
@@ -438,7 +544,7 @@
     <div class="tab-intro-inner">
       <div class="eyebrow">🧺 Dispensa di bordo</div>
       <h1 class="tab-title">Cambusa</h1>
-      <p class="tab-desc">La cambusa è la scorta di cibo e bevande della barca. Aggiungi qui cosa porti — chiunque può aggiungere o togliere una voce, così evitiamo doppioni.</p>
+      <p class="tab-desc">La cambusa è la scorta di cibo e bevande della barca. Aggiungi qui cosa porti — chiunque può aggiungere, modificare o togliere una voce, così evitiamo doppioni.</p>
     </div>
   </div>
   <div class="wrap">
@@ -483,6 +589,51 @@
 
 <footer>⚓ Buona gita — Castro Marina, 15 agosto</footer>
 
+<!-- ============ BOTTOM TAB BAR ============ -->
+<nav class="tabbar">
+  <div class="tabbar-inner" id="tabs">
+    <button class="tab-btn active" data-page="home">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-7 9 7"/><path d="M5 10v9h14v-9"/></svg>
+      <span class="lbl">Home</span>
+    </button>
+    <button class="tab-btn" data-page="rotta">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M14.5 9.5l-2 5-5 2 2-5z"/></svg>
+      <span class="lbl">Rotta</span>
+    </button>
+    <button class="tab-btn" data-page="cambusa">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9h16l-1.5 10a2 2 0 01-2 1.7H7.5a2 2 0 01-2-1.7z"/><path d="M8 9V6a4 4 0 018 0v3"/></svg>
+      <span class="lbl">Cambusa</span>
+    </button>
+    <button class="tab-btn" data-page="spese">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.2c0-1.2 1.1-2.2 2.5-2.2s2.5.8 2.5 1.9-1 1.6-2.5 1.9-2.5 1-2.5 2.1 1.1 1.9 2.5 1.9 2.5-.9 2.5-2"/></svg>
+      <span class="lbl">Spese</span>
+    </button>
+  </div>
+</nav>
+
+<!-- ============ EDIT MODAL (Cambusa) ============ -->
+<div class="modal-overlay" id="edit-modal">
+  <div class="modal-card">
+    <div class="modal-title" id="modal-item-name">Modifica voce</div>
+    <div class="modal-sub">Aggiorna quantità e chi la porta.</div>
+    <div class="modal-field">
+      <label for="m-qty">Quantità</label>
+      <input type="text" id="m-qty" placeholder="es. 3 bottiglie">
+    </div>
+    <div class="modal-field">
+      <label for="m-chi">Chi lo porta</label>
+      <input type="text" id="m-chi" placeholder="es. Marco">
+    </div>
+    <div class="modal-actions">
+      <button class="modal-cancel" id="modal-cancel">Annulla</button>
+      <button class="modal-save" id="modal-save">Salva</button>
+    </div>
+  </div>
+</div>
+
+<button class="fab-share" id="fab-share" aria-label="Condividi il sito su WhatsApp">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 10.5l6.8-3.9M8.6 13.5l6.8 3.9"/></svg>
+</button>
 <!-- Firebase (per la Cambusa condivisa) -->
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
@@ -493,7 +644,7 @@
   function showPage(name){
     pages.forEach(p => p.classList.toggle('active', p.id === 'page-' + name));
     tabBtns.forEach(b => b.classList.toggle('active', b.dataset.page === name));
-    window.scrollTo({top:0, behavior:'instant' in window ? 'instant' : 'auto'});
+    window.scrollTo(0,0);
     history.replaceState(null, '', '#' + name);
   }
   tabBtns.forEach(btn => btn.addEventListener('click', () => showPage(btn.dataset.page)));
@@ -515,21 +666,74 @@
     });
   });
 
+  /* ============ COUNTDOWN ============ */
+  const DEPARTURE = new Date('2026-08-15T08:30:00');
+  const RETURN_BY = new Date('2026-08-15T19:00:00');
+  const ccCard = document.getElementById('countdown-card');
+  const ccLabel = document.getElementById('countdown-label');
+  const ccDigits = document.getElementById('countdown-digits');
+  const ccStatus = document.getElementById('countdown-status');
+
+  function pad(n){ return String(n).padStart(2,'0'); }
+
+  function updateCountdown(){
+    const now = new Date();
+    if(now < DEPARTURE){
+      const diff = DEPARTURE - now;
+      const d = Math.floor(diff / 86400000);
+      const h = Math.floor((diff % 86400000) / 3600000);
+      const m = Math.floor((diff % 3600000) / 60000);
+      const s = Math.floor((diff % 60000) / 1000);
+      document.getElementById('cd-days').textContent = d;
+      document.getElementById('cd-hours').textContent = pad(h);
+      document.getElementById('cd-mins').textContent = pad(m);
+      document.getElementById('cd-secs').textContent = pad(s);
+      ccCard.classList.remove('sailing','done');
+    } else if(now >= DEPARTURE && now < RETURN_BY){
+      ccLabel.textContent = 'In navigazione';
+      ccDigits.style.display = 'none';
+      ccStatus.style.display = 'block';
+      ccStatus.textContent = 'La barca è salpata! ⚓ Buona gita 🌊';
+      ccCard.classList.add('sailing');
+      ccCard.classList.remove('done');
+    } else {
+      ccLabel.textContent = 'Gita conclusa';
+      ccDigits.style.display = 'none';
+      ccStatus.style.display = 'block';
+      ccStatus.textContent = 'Si torna in porto. Alla prossima gita! ⚓';
+      ccCard.classList.add('done');
+      ccCard.classList.remove('sailing');
+    }
+  }
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+
   /* ============ CAMBUSA (Firebase Realtime Database) ============
      1. Crea un progetto gratuito su https://console.firebase.google.com
      2. Attiva "Realtime Database" (modalità test, oppure con le regole in fondo a questo file)
      3. Copia qui sotto la configurazione del tuo progetto (Project settings → SDK setup and config)
   */
   const firebaseConfig = {
-    apiKey: "AIzaSyDnabwvnDEYL7S0wHdJVw7L0jh3eJZVl-E",
-    authDomain: "gita-castro.firebaseapp.com",
-    databaseURL: "https://gita-castro-default-rtdb.europe-west1.firebasedatabase.app",
-    projectId: "gita-castro",
+    apiKey: "YOUR_API_KEY",
+    authDomain: "YOUR_PROJECT.firebaseapp.com",
+    databaseURL: "https://YOUR_PROJECT-default-rtdb.firebaseio.com",
+    projectId: "YOUR_PROJECT",
   };
 
   const cambusaForm = document.getElementById('cambusa-form');
   const cambusaList = document.getElementById('cambusa-list');
   const fbWarning = document.getElementById('fb-warning');
+  const editModal = document.getElementById('edit-modal');
+  const modalItemName = document.getElementById('modal-item-name');
+  const modalQty = document.getElementById('m-qty');
+  const modalChi = document.getElementById('m-chi');
+  const modalCancel = document.getElementById('modal-cancel');
+  const modalSave = document.getElementById('modal-save');
+  let editingKey = null;
+
+  function closeModal(){ editModal.classList.remove('open'); editingKey = null; }
+  modalCancel.addEventListener('click', closeModal);
+  editModal.addEventListener('click', function(e){ if(e.target === editModal) closeModal(); });
 
   const isConfigured = firebaseConfig.apiKey && !firebaseConfig.apiKey.includes('YOUR_');
 
@@ -556,9 +760,18 @@
             '<div class="info"><b>' + escapeHtml(item.nome || '') + '</b>' +
             '<span>' + (item.chiPorta ? 'porta: ' + escapeHtml(item.chiPorta) : 'chi porta: da definire') + '</span></div>' +
             (item.quantita ? '<span class="qty">' + escapeHtml(item.quantita) + '</span>' : '') +
-            '<button class="del" aria-label="Rimuovi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>';
+            '<button class="icon-btn edit" aria-label="Modifica"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 013 3L7 19l-4 1 1-4z"/></svg></button>' +
+            '<button class="icon-btn del" aria-label="Rimuovi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>';
           row.querySelector('.del').addEventListener('click', function(){
             cambusaRef.child(key).remove();
+          });
+          row.querySelector('.edit').addEventListener('click', function(){
+            editingKey = key;
+            modalItemName.textContent = 'Modifica — ' + (item.nome || '');
+            modalQty.value = item.quantita || '';
+            modalChi.value = item.chiPorta || '';
+            editModal.classList.add('open');
+            modalQty.focus();
           });
           cambusaList.appendChild(row);
         });
@@ -574,7 +787,31 @@
       cambusaForm.reset();
       document.getElementById('c-nome').focus();
     });
+
+    modalSave.addEventListener('click', function(){
+      if(!editingKey) return;
+      cambusaRef.child(editingKey).update({
+        quantita: modalQty.value.trim(),
+        chiPorta: modalChi.value.trim()
+      });
+      closeModal();
+    });
   }
+
+  /* ============ SHARE (WhatsApp) ============ */
+  const fabShare = document.getElementById('fab-share');
+  fabShare.addEventListener('click', async function(){
+    const url = window.location.href.split('#')[0];
+    const text = 'Ciao! Ecco tutti i dettagli della gita in barca del 15 agosto a Castro Marina ⚓🌊';
+    if(navigator.share){
+      try{
+        await navigator.share({ title: 'Gita a Castro Marina · 15 agosto', text: text, url: url });
+        return;
+      }catch(err){ /* utente ha annullato o share non riuscito, fallback sotto */ }
+    }
+    const waUrl = 'https://wa.me/?text=' + encodeURIComponent(text + ' ' + url);
+    window.open(waUrl, '_blank', 'noopener');
+  });
 
   function escapeHtml(str){
     const d = document.createElement('div');
