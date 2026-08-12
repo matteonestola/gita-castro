@@ -12,8 +12,8 @@
   mai toccare né perdere questa configurazione.
 */
 const firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "YOUR_PROJECT.firebaseapp.com",
-  databaseURL: "https://YOUR_PROJECT-default-rtdb.firebaseio.com",
-  projectId: "YOUR_PROJECT",
-};
+    apiKey: "AIzaSyDnabwvnDEYL7S0wHdJVw7L0jh3eJZVl-E",
+    authDomain: "gita-castro.firebaseapp.com",
+    databaseURL: "https://gita-castro-default-rtdb.europe-west1.firebasedatabase.app",
+    projectId: "gita-castro",
+  };
