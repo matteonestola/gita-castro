@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Castro Marina · 15 Agosto</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,500&family=Space+Mono:wght@400;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0B2A3E;
+    --ink-2:#123B52;
+    --ink-3:#1B4C68;
+    --paper:#F2EBD8;
+    --paper-dim:#E5DBC1;
+    --teal:#2C8C82;
+    --coral:#E8623D;
+    --brass:#C9A15C;
+    --text-dark:#14202B;
+    --text-soft:rgba(242,235,216,0.7);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--ink);
+    color:var(--paper);
+    font-family:'Inter',sans-serif;
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:760px; margin:0 auto; padding:0 24px;}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    padding:72px 24px 56px;
+    background:
+      radial-gradient(ellipse at 20% -10%, rgba(44,140,130,0.35), transparent 55%),
+      radial-gradient(ellipse at 90% 10%, rgba(232,98,61,0.18), transparent 45%),
+      var(--ink);
+    overflow:hidden;
+    border-bottom:1px solid rgba(242,235,216,0.12);
+  }
+  .hero-inner{max-width:760px; margin:0 auto; position:relative; z-index:2;}
+  .coords{
+    font-family:'Space Mono',monospace;
+    font-size:12px;
+    letter-spacing:0.12em;
+    color:var(--brass);
+    text-transform:uppercase;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom:22px;
+  }
+  .coords::before{content:"⚓"; font-size:13px;}
+  h1.title{
+    font-family:'Fraunces',serif;
+    font-weight:600;
+    font-size:clamp(40px,9vw,64px);
+    line-height:0.98;
+    letter-spacing:-0.01em;
+    color:var(--paper);
+  }
+  h1.title em{font-style:italic; font-weight:500; color:var(--teal);}
+  .subline{
+    margin-top:16px;
+    font-size:16px;
+    color:var(--text-soft);
+    max-width:46ch;
+  }
+  .hero-meta{
+    display:flex;
+    gap:28px;
+    margin-top:36px;
+    flex-wrap:wrap;
+  }
+  .meta-item .k{
+    font-family:'Space Mono',monospace;
+    font-size:11px;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    color:var(--brass);
+    display:block;
+    margin-bottom:4px;
+  }
+  .meta-item .v{
+    font-family:'Fraunces',serif;
+    font-size:22px;
+    color:var(--paper);
+  }
+  .wave{
+    position:absolute; left:0; right:0; bottom:-1px; height:40px;
+    background:repeating-linear-gradient(90deg, transparent, transparent 38px, rgba(44,140,130,0.15) 38px, rgba(44,140,130,0.15) 40px);
+    opacity:0.5;
+  }
+
+  /* ---------- SECTION HEADERS ---------- */
+  section{padding:64px 0;}
+  .section-head{margin-bottom:40px;}
+  .eyebrow{
+    font-family:'Space Mono',monospace;
+    font-size:11px;
+    letter-spacing:0.15em;
+    text-transform:uppercase;
+    color:var(--teal);
+    margin-bottom:8px;
+  }
+  h2.section-title{
+    font-family:'Fraunces',serif;
+    font-weight:600;
+    font-size:clamp(28px,5vw,36px);
+    color:var(--paper);
+  }
+
+  /* ---------- ROUTE / TIMELINE ---------- */
+  .route{position:relative; padding-left:36px;}
+  .route-line{
+    position:absolute; left:9px; top:6px; bottom:6px; width:2px;
+    background:repeating-linear-gradient(180deg, var(--teal) 0, var(--teal) 6px, transparent 6px, transparent 12px);
+  }
+  .stop{position:relative; padding-bottom:38px;}
+  .stop:last-child{padding-bottom:0;}
+  .stop-dot{
+    position:absolute; left:-36px; top:2px;
+    width:20px; height:20px; border-radius:50%;
+    background:var(--ink);
+    border:2px solid var(--brass);
+    display:flex; align-items:center; justify-content:center;
+  }
+  .stop-dot::after{content:""; width:6px; height:6px; border-radius:50%; background:var(--brass);}
+  .stop.transfer .stop-dot{border-color:var(--teal); width:10px; height:10px; left:-31px; top:6px;}
+  .stop.transfer .stop-dot::after{display:none;}
+  .stop.transfer{padding-bottom:20px; opacity:0.7;}
+  .stop-time{
+    font-family:'Space Mono',monospace;
+    font-size:13px;
+    color:var(--brass);
+    letter-spacing:0.03em;
+    margin-bottom:6px;
+  }
+  .stop.transfer .stop-time{font-size:12px; color:var(--text-soft);}
+  .stop-card{
+    background:var(--ink-2);
+    border:1px solid rgba(242,235,216,0.1);
+    border-radius:10px;
+    padding:18px 20px;
+  }
+  .stop.transfer .stop-card{
+    background:transparent; border:none; padding:0 0 0 0;
+  }
+  .stop-name{
+    font-family:'Fraunces',serif;
+    font-size:20px;
+    font-weight:600;
+    color:var(--paper);
+    margin-bottom:4px;
+  }
+  .stop.transfer .stop-name{font-size:14px; font-family:'Inter',sans-serif; font-weight:500; color:var(--text-soft);}
+  .stop-desc{font-size:14px; color:var(--text-soft); margin-top:6px;}
+  .badge{
+    display:inline-block;
+    font-family:'Space Mono',monospace;
+    font-size:11px;
+    letter-spacing:0.05em;
+    color:var(--ink);
+    background:var(--teal);
+    padding:3px 9px;
+    border-radius:20px;
+    margin-top:10px;
+  }
+  .note-box{
+    margin-top:36px;
+    background:rgba(201,161,92,0.1);
+    border-left:3px solid var(--brass);
+    padding:14px 18px;
+    border-radius:0 8px 8px 0;
+    font-size:14px;
+    color:var(--paper);
+  }
+  .note-box b{color:var(--brass);}
+  .stats-row{
+    display:flex; gap:32px; margin-top:28px; flex-wrap:wrap;
+    padding-top:24px; border-top:1px dashed rgba(242,235,216,0.15);
+  }
+
+  /* ---------- CHECKLIST ---------- */
+  .checklist{
+    background:var(--paper);
+    border-radius:14px;
+    padding:8px;
+  }
+  .check-item{
+    display:flex;
+    align-items:flex-start;
+    gap:14px;
+    padding:16px 16px;
+    border-bottom:1px solid var(--paper-dim);
+    cursor:pointer;
+    user-select:none;
+  }
+  .check-item:last-child{border-bottom:none;}
+  .check-box{
+    flex:none;
+    width:22px; height:22px;
+    border-radius:6px;
+    border:2px solid var(--ink-3);
+    margin-top:1px;
+    display:flex; align-items:center; justify-content:center;
+    transition:background 0.15s, border-color 0.15s;
+  }
+  .check-box svg{opacity:0; transform:scale(0.6); transition:opacity .15s, transform .15s;}
+  .check-item.done .check-box{background:var(--teal); border-color:var(--teal);}
+  .check-item.done .check-box svg{opacity:1; transform:scale(1);}
+  .check-text{flex:1;}
+  .check-label{
+    font-size:16px; font-weight:500; color:var(--text-dark);
+    transition:opacity .15s;
+  }
+  .check-item.done .check-label{opacity:0.4; text-decoration:line-through;}
+  .check-sub{font-size:13px; color:#5a6b78; margin-top:2px;}
+  .tag-required{
+    display:inline-block; margin-top:6px;
+    font-family:'Space Mono',monospace; font-size:10px; letter-spacing:0.08em;
+    text-transform:uppercase; color:#fff; background:var(--coral);
+    padding:2px 8px; border-radius:20px;
+  }
+
+  /* ---------- TRICOUNT ---------- */
+  .tricount-card{
+    display:flex; align-items:center; justify-content:space-between; gap:20px;
+    background:linear-gradient(135deg, var(--ink-3), var(--ink-2));
+    border:1px solid rgba(242,235,216,0.12);
+    border-radius:14px;
+    padding:26px 28px;
+    flex-wrap:wrap;
+  }
+  .tricount-card p{color:var(--text-soft); font-size:14px; margin-top:6px; max-width:36ch;}
+  .btn{
+    display:inline-flex; align-items:center; gap:8px;
+    background:var(--coral); color:#fff;
+    font-family:'Inter',sans-serif; font-weight:600; font-size:14px;
+    padding:12px 22px; border-radius:30px; text-decoration:none;
+    white-space:nowrap;
+    transition:transform 0.15s, box-shadow 0.15s;
+  }
+  .btn:hover{transform:translateY(-2px); box-shadow:0 8px 20px rgba(232,98,61,0.35);}
+  .btn:focus-visible{outline:2px solid var(--paper); outline-offset:3px;}
+
+  footer{
+    text-align:center; padding:48px 24px 64px;
+    color:var(--text-soft); font-size:13px;
+    font-family:'Space Mono',monospace;
+  }
+
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto;}
+    *{transition:none !important;}
+  }
+
+  @media (max-width:520px){
+    .hero{padding:52px 20px 44px;}
+    section{padding:48px 0;}
+    .hero-meta{gap:20px;}
+    .tricount-card{flex-direction:column; align-items:flex-start;}
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="wave"></div>
+  <div class="hero-inner">
+    <div class="coords">40°0′N · 18°25′E — Castro Marina, Salento</div>
+    <h1 class="title">Rotta del<br><em>15 agosto</em></h1>
+    <p class="subline">Giornata in barca lungo la costa: Baia del Mulino d'Acqua, Porto Badisco e Grotta Zinzulusa. Tutti i dettagli, qui in un posto solo.</p>
+    <div class="hero-meta">
+      <div class="meta-item"><span class="k">Ritrovo</span><span class="v">8:30</span></div>
+      <div class="meta-item"><span class="k">Partenza</span><span class="v">9:00</span></div>
+      <div class="meta-item"><span class="k">Rientro barca</span><span class="v">17:17</span></div>
+      <div class="meta-item"><span class="k">Riconsegna entro</span><span class="v">19:00</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <section id="rotta">
+    <div class="section-head">
+      <div class="eyebrow">La rotta · ~13,7 nm totali</div>
+      <h2 class="section-title">Tappa per tappa</h2>
+    </div>
+
+    <div class="route">
+      <div class="route-line"></div>
+
+      <div class="stop">
+        <div class="stop-dot"></div>
+        <div class="stop-time">9:00</div>
+        <div class="stop-card">
+          <div class="stop-name">Partenza da Castro Marina</div>
+        </div>
+      </div>
+
+      <div class="stop transfer">
+        <div class="stop-dot"></div>
+        <div class="stop-time">9:00 → 9:26 · navigazione</div>
+      </div>
+
+      <div class="stop">
+        <div class="stop-dot"></div>
+        <div class="stop-time">9:26 – 15:00</div>
+        <div class="stop-card">
+          <div class="stop-name">Baia del Mulino d'Acqua</div>
+          <div class="stop-desc">Sosta 1 — circa 5h30. Bagno, snorkeling, grotte e pranzo a bordo.</div>
+          <span class="badge">Sosta lunga</span>
+        </div>
+      </div>
+
+      <div class="stop transfer">
+        <div class="stop-dot"></div>
+        <div class="stop-time">15:00 → 15:15 · navigazione</div>
+      </div>
+
+      <div class="stop">
+        <div class="stop-dot"></div>
+        <div class="stop-time">15:15 – 16:15</div>
+        <div class="stop-card">
+          <div class="stop-name">Porto Badisco</div>
+          <div class="stop-desc">Sosta 2 — circa 1h. Bagno e relax.</div>
+        </div>
+      </div>
+
+      <div class="stop transfer">
+        <div class="stop-dot"></div>
+        <div class="stop-time">16:15 → 16:51 · navigazione (4,8 nm)</div>
+      </div>
+
+      <div class="stop">
+        <div class="stop-dot"></div>
+        <div class="stop-time">16:51 – 17:15</div>
+        <div class="stop-card">
+          <div class="stop-name">Grotta Zinzulusa</div>
+          <div class="stop-desc">Sosta 3 — circa 25 min. Visita rapida, quasi sulla strada del rientro.</div>
+          <span class="badge">Ultima sosta</span>
+        </div>
+      </div>
+
+      <div class="stop transfer">
+        <div class="stop-dot"></div>
+        <div class="stop-time">17:15 → 17:17 · navigazione (0,3 nm)</div>
+      </div>
+
+      <div class="stop">
+        <div class="stop-dot"></div>
+        <div class="stop-time">17:17</div>
+        <div class="stop-card">
+          <div class="stop-name">Rientro a Castro Marina</div>
+          <div class="stop-desc">Margine prima della riconsegna (19:00): circa 1h45, comodo per imprevisti.</div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="note-box">
+      <b>Nota pratica —</b> alla Zinzulusa in alta stagione c'è traffico di barche e gommoni all'ingresso della grotta. Con 25 minuti si riesce a vedere dall'esterno/entrata; per esplorarla con calma, meglio accorciare leggermente la sosta a Porto Badisco.
+    </div>
+  </section>
+
+  <section id="checklist">
+    <div class="section-head">
+      <div class="eyebrow">Prima di partire</div>
+      <h2 class="section-title">Cosa portare</h2>
+    </div>
+
+    <div class="checklist" id="checklist-list">
+      <div class="check-item" data-key="bagagli">
+        <div class="check-box"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5L4.5 8.5L11 1.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="check-text">
+          <div class="check-label">Bagagli morbidi, non rigidi</div>
+          <div class="check-sub">In barca lo spazio è poco — ideale 1 borsa (anche grande) ogni 2 persone.</div>
+        </div>
+      </div>
+      <div class="check-item" data-key="materassino">
+        <div class="check-box"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5L4.5 8.5L11 1.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="check-text"><div class="check-label">Materassino / SUP</div></div>
+      </div>
+      <div class="check-item" data-key="maschera">
+        <div class="check-box"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5L4.5 8.5L11 1.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="check-text"><div class="check-label">Maschera + pinne</div></div>
+      </div>
+      <div class="check-item" data-key="crema">
+        <div class="check-box"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5L4.5 8.5L11 1.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="check-text"><div class="check-label">Crema solare</div></div>
+      </div>
+      <div class="check-item" data-key="xamamina">
+        <div class="check-box"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5L4.5 8.5L11 1.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="check-text">
+          <div class="check-label">Xamamina</div>
+          <div class="check-sub">Per chi soffre il mare — da prendere ogni tot ore.</div>
+          <span class="tag-required">Obbligatoria</span>
+        </div>
+      </div>
+      <div class="check-item" data-key="cibo">
+        <div class="check-box"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5L4.5 8.5L11 1.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="check-text">
+          <div class="check-label">Cibo e bevande</div>
+          <div class="check-sub">Gestiti a parte, ci si organizza insieme.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="spese">
+    <div class="section-head">
+      <div class="eyebrow">Spese condivise</div>
+      <h2 class="section-title">Tricount del gruppo</h2>
+    </div>
+    <div class="tricount-card">
+      <div>
+        <div class="stop-name" style="font-size:19px;">Tutte le spese in un posto solo</div>
+        <p>Il gruppo Tricount è già attivo — apri il link per aggiungere le tue spese o controllare i saldi.</p>
+      </div>
+      <a class="btn" href="https://tricount.com/trHzMcqLnlAXXRuywz" target="_blank" rel="noopener">Apri Tricount ↗</a>
+    </div>
+  </section>
+
+</div>
+
+<footer>⚓ Buona gita — Castro Marina, 15 agosto</footer>
+
+<script>
+  document.querySelectorAll('.check-item').forEach(function(item){
+    item.addEventListener('click', function(){
+      item.classList.toggle('done');
+    });
+    item.setAttribute('tabindex', '0');
+    item.setAttribute('role', 'checkbox');
+    item.setAttribute('aria-checked', 'false');
+    item.addEventListener('keydown', function(e){
+      if(e.key === 'Enter' || e.key === ' '){
+        e.preventDefault();
+        item.click();
+      }
+    });
+    item.addEventListener('click', function(){
+      item.setAttribute('aria-checked', item.classList.contains('done') ? 'true' : 'false');
+    });
+  });
+</script>
+
+</body>
+</html>
