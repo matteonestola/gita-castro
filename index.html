@@ -28,91 +28,105 @@
     font-family:'Inter',sans-serif;
     line-height:1.5;
     -webkit-font-smoothing:antialiased;
+    padding-top:66px;
   }
   .wrap{max-width:760px; margin:0 auto; padding:0 24px;}
+  a{color:inherit;}
 
-  /* ---------- HERO ---------- */
-  .hero{
-    position:relative;
-    padding:72px 24px 56px;
-    background:
-      radial-gradient(ellipse at 20% -10%, rgba(44,140,130,0.35), transparent 55%),
-      radial-gradient(ellipse at 90% 10%, rgba(232,98,61,0.18), transparent 45%),
-      var(--ink);
-    overflow:hidden;
+  /* ---------- TOP NAV ---------- */
+  .topnav{
+    position:fixed; top:0; left:0; right:0; z-index:50;
+    background:rgba(11,42,62,0.92);
+    backdrop-filter:blur(10px);
     border-bottom:1px solid rgba(242,235,216,0.12);
   }
-  .hero-inner{max-width:760px; margin:0 auto; position:relative; z-index:2;}
-  .coords{
-    font-family:'Space Mono',monospace;
-    font-size:12px;
-    letter-spacing:0.12em;
-    color:var(--brass);
-    text-transform:uppercase;
-    display:flex;
-    align-items:center;
-    gap:10px;
-    margin-bottom:22px;
+  .topnav-inner{
+    max-width:760px; margin:0 auto; padding:0 20px;
+    display:flex; align-items:center; justify-content:space-between;
+    height:66px;
   }
-  .coords::before{content:"⚓"; font-size:13px;}
-  h1.title{
-    font-family:'Fraunces',serif;
-    font-weight:600;
-    font-size:clamp(40px,9vw,64px);
-    line-height:0.98;
-    letter-spacing:-0.01em;
-    color:var(--paper);
+  .brand{
+    font-family:'Fraunces',serif; font-weight:600; font-size:16px;
+    display:flex; align-items:center; gap:8px; white-space:nowrap;
   }
-  h1.title em{font-style:italic; font-weight:500; color:var(--teal);}
-  .subline{
-    margin-top:16px;
-    font-size:16px;
+  .brand .dot{width:6px; height:6px; border-radius:50%; background:var(--coral);}
+  .tabs{display:flex; gap:2px;}
+  .tab-btn{
+    background:none; border:none; cursor:pointer;
+    display:flex; flex-direction:column; align-items:center; gap:3px;
+    padding:8px 10px; border-radius:10px;
     color:var(--text-soft);
-    max-width:46ch;
+    font-family:'Inter',sans-serif; font-size:10px; font-weight:600;
+    letter-spacing:0.02em; text-transform:uppercase;
+    transition:background .15s, color .15s;
   }
-  .hero-meta{
-    display:flex;
-    gap:28px;
-    margin-top:36px;
-    flex-wrap:wrap;
+  .tab-btn svg{width:18px; height:18px; stroke:currentColor;}
+  .tab-btn:hover{color:var(--paper); background:rgba(242,235,216,0.06);}
+  .tab-btn.active{color:var(--ink); background:var(--brass);}
+  .tab-btn:focus-visible{outline:2px solid var(--teal); outline-offset:2px;}
+
+  /* ---------- TAB INTRO ---------- */
+  .tab-intro{
+    padding:44px 24px 8px;
+    background:
+      radial-gradient(ellipse at 20% -10%, rgba(44,140,130,0.3), transparent 55%),
+      radial-gradient(ellipse at 90% 10%, rgba(232,98,61,0.15), transparent 45%),
+      var(--ink);
+    border-bottom:1px solid rgba(242,235,216,0.12);
   }
-  .meta-item .k{
-    font-family:'Space Mono',monospace;
-    font-size:11px;
-    letter-spacing:0.1em;
-    text-transform:uppercase;
-    color:var(--brass);
-    display:block;
-    margin-bottom:4px;
+  .tab-intro-inner{max-width:760px; margin:0 auto; padding-bottom:36px;}
+  .eyebrow{
+    font-family:'Space Mono',monospace; font-size:11px; letter-spacing:0.15em;
+    text-transform:uppercase; color:var(--teal); margin-bottom:8px;
+    display:flex; align-items:center; gap:8px;
   }
-  .meta-item .v{
-    font-family:'Fraunces',serif;
-    font-size:22px;
+  h1.tab-title{
+    font-family:'Fraunces',serif; font-weight:600;
+    font-size:clamp(30px,7vw,44px); line-height:1.02; letter-spacing:-0.01em;
     color:var(--paper);
   }
-  .wave{
-    position:absolute; left:0; right:0; bottom:-1px; height:40px;
-    background:repeating-linear-gradient(90deg, transparent, transparent 38px, rgba(44,140,130,0.15) 38px, rgba(44,140,130,0.15) 40px);
-    opacity:0.5;
+  .tab-desc{margin-top:12px; font-size:15px; color:var(--text-soft); max-width:52ch;}
+
+  /* ---------- PAGES ---------- */
+  .page{display:none;}
+  .page.active{display:block;}
+  section{padding:48px 0;}
+  .section-head{margin-bottom:32px;}
+  h2.section-title{
+    font-family:'Fraunces',serif; font-weight:600;
+    font-size:clamp(24px,5vw,30px); color:var(--paper);
   }
 
-  /* ---------- SECTION HEADERS ---------- */
-  section{padding:64px 0;}
-  .section-head{margin-bottom:40px;}
-  .eyebrow{
-    font-family:'Space Mono',monospace;
-    font-size:11px;
-    letter-spacing:0.15em;
-    text-transform:uppercase;
-    color:var(--teal);
-    margin-bottom:8px;
+  /* ---------- HOME: orari ---------- */
+  .orari-grid{display:flex; gap:16px; flex-wrap:wrap; padding:44px 0 8px;}
+  .orario-card{
+    flex:1; min-width:140px;
+    background:var(--ink-2); border:1px solid rgba(242,235,216,0.1);
+    border-radius:14px; padding:22px 20px;
   }
-  h2.section-title{
-    font-family:'Fraunces',serif;
-    font-weight:600;
-    font-size:clamp(28px,5vw,36px);
-    color:var(--paper);
+  .orario-card .k{
+    font-family:'Space Mono',monospace; font-size:11px; letter-spacing:0.1em;
+    text-transform:uppercase; color:var(--brass); display:block; margin-bottom:8px;
   }
+  .orario-card .v{font-family:'Fraunces',serif; font-size:32px; color:var(--paper);}
+
+  /* ---------- MAP LINKS ---------- */
+  .map-list{display:flex; flex-direction:column; gap:10px;}
+  .map-link{
+    display:flex; align-items:center; gap:14px;
+    background:var(--ink-2); border:1px solid rgba(242,235,216,0.1);
+    border-radius:12px; padding:16px 18px;
+    text-decoration:none; transition:border-color .15s, transform .15s;
+  }
+  .map-link:hover{border-color:var(--teal); transform:translateX(3px);}
+  .map-link .pin{
+    flex:none; width:34px; height:34px; border-radius:50%;
+    background:rgba(44,140,130,0.15); display:flex; align-items:center; justify-content:center;
+  }
+  .map-link .pin svg{width:16px; height:16px; stroke:var(--teal);}
+  .map-link .info b{font-family:'Inter',sans-serif; font-size:15px; font-weight:600; color:var(--paper); display:block;}
+  .map-link .info span{font-size:12px; color:var(--text-soft);}
+  .map-link .go{margin-left:auto; color:var(--text-soft); font-size:13px;}
 
   /* ---------- ROUTE / TIMELINE ---------- */
   .route{position:relative; padding-left:36px;}
@@ -125,329 +139,461 @@
   .stop-dot{
     position:absolute; left:-36px; top:2px;
     width:20px; height:20px; border-radius:50%;
-    background:var(--ink);
-    border:2px solid var(--brass);
+    background:var(--ink); border:2px solid var(--brass);
     display:flex; align-items:center; justify-content:center;
   }
   .stop-dot::after{content:""; width:6px; height:6px; border-radius:50%; background:var(--brass);}
   .stop.transfer .stop-dot{border-color:var(--teal); width:10px; height:10px; left:-31px; top:6px;}
   .stop.transfer .stop-dot::after{display:none;}
   .stop.transfer{padding-bottom:20px; opacity:0.7;}
-  .stop-time{
-    font-family:'Space Mono',monospace;
-    font-size:13px;
-    color:var(--brass);
-    letter-spacing:0.03em;
-    margin-bottom:6px;
-  }
+  .stop-time{font-family:'Space Mono',monospace; font-size:13px; color:var(--brass); letter-spacing:0.03em; margin-bottom:6px;}
   .stop.transfer .stop-time{font-size:12px; color:var(--text-soft);}
-  .stop-card{
-    background:var(--ink-2);
-    border:1px solid rgba(242,235,216,0.1);
-    border-radius:10px;
-    padding:18px 20px;
-  }
-  .stop.transfer .stop-card{
-    background:transparent; border:none; padding:0 0 0 0;
-  }
-  .stop-name{
-    font-family:'Fraunces',serif;
-    font-size:20px;
-    font-weight:600;
-    color:var(--paper);
-    margin-bottom:4px;
-  }
+  .stop-card{background:var(--ink-2); border:1px solid rgba(242,235,216,0.1); border-radius:10px; padding:18px 20px;}
+  .stop.transfer .stop-card{background:transparent; border:none; padding:0;}
+  .stop-name{font-family:'Fraunces',serif; font-size:20px; font-weight:600; color:var(--paper); margin-bottom:4px;}
   .stop.transfer .stop-name{font-size:14px; font-family:'Inter',sans-serif; font-weight:500; color:var(--text-soft);}
   .stop-desc{font-size:14px; color:var(--text-soft); margin-top:6px;}
   .badge{
-    display:inline-block;
-    font-family:'Space Mono',monospace;
-    font-size:11px;
-    letter-spacing:0.05em;
-    color:var(--ink);
-    background:var(--teal);
-    padding:3px 9px;
-    border-radius:20px;
-    margin-top:10px;
+    display:inline-block; font-family:'Space Mono',monospace; font-size:11px; letter-spacing:0.05em;
+    color:var(--ink); background:var(--teal); padding:3px 9px; border-radius:20px; margin-top:10px;
   }
   .note-box{
-    margin-top:36px;
-    background:rgba(201,161,92,0.1);
-    border-left:3px solid var(--brass);
-    padding:14px 18px;
-    border-radius:0 8px 8px 0;
-    font-size:14px;
-    color:var(--paper);
+    margin-top:36px; background:rgba(201,161,92,0.1); border-left:3px solid var(--brass);
+    padding:14px 18px; border-radius:0 8px 8px 0; font-size:14px; color:var(--paper);
   }
   .note-box b{color:var(--brass);}
-  .stats-row{
-    display:flex; gap:32px; margin-top:28px; flex-wrap:wrap;
-    padding-top:24px; border-top:1px dashed rgba(242,235,216,0.15);
-  }
 
   /* ---------- CHECKLIST ---------- */
-  .checklist{
-    background:var(--paper);
-    border-radius:14px;
-    padding:8px;
-  }
+  .checklist{background:var(--paper); border-radius:14px; padding:8px;}
   .check-item{
-    display:flex;
-    align-items:flex-start;
-    gap:14px;
-    padding:16px 16px;
-    border-bottom:1px solid var(--paper-dim);
-    cursor:pointer;
-    user-select:none;
+    display:flex; align-items:flex-start; gap:14px; padding:16px;
+    border-bottom:1px solid var(--paper-dim); cursor:pointer; user-select:none;
   }
   .check-item:last-child{border-bottom:none;}
   .check-box{
-    flex:none;
-    width:22px; height:22px;
-    border-radius:6px;
-    border:2px solid var(--ink-3);
-    margin-top:1px;
-    display:flex; align-items:center; justify-content:center;
-    transition:background 0.15s, border-color 0.15s;
+    flex:none; width:22px; height:22px; border-radius:6px; border:2px solid var(--ink-3);
+    margin-top:1px; display:flex; align-items:center; justify-content:center;
+    transition:background .15s, border-color .15s;
   }
   .check-box svg{opacity:0; transform:scale(0.6); transition:opacity .15s, transform .15s;}
   .check-item.done .check-box{background:var(--teal); border-color:var(--teal);}
   .check-item.done .check-box svg{opacity:1; transform:scale(1);}
   .check-text{flex:1;}
-  .check-label{
-    font-size:16px; font-weight:500; color:var(--text-dark);
-    transition:opacity .15s;
-  }
+  .check-label{font-size:16px; font-weight:500; color:var(--text-dark); transition:opacity .15s;}
   .check-item.done .check-label{opacity:0.4; text-decoration:line-through;}
   .check-sub{font-size:13px; color:#5a6b78; margin-top:2px;}
   .tag-required{
-    display:inline-block; margin-top:6px;
-    font-family:'Space Mono',monospace; font-size:10px; letter-spacing:0.08em;
-    text-transform:uppercase; color:#fff; background:var(--coral);
+    display:inline-block; margin-top:6px; font-family:'Space Mono',monospace; font-size:10px;
+    letter-spacing:0.08em; text-transform:uppercase; color:#fff; background:var(--coral);
     padding:2px 8px; border-radius:20px;
   }
 
-  /* ---------- TRICOUNT ---------- */
+  /* ---------- CAMBUSA ---------- */
+  .cambusa-form{
+    display:flex; gap:10px; flex-wrap:wrap; background:var(--ink-2);
+    border:1px solid rgba(242,235,216,0.1); border-radius:14px; padding:18px; margin-bottom:24px;
+  }
+  .cambusa-form input{
+    flex:1; min-width:120px; background:var(--ink); border:1px solid rgba(242,235,216,0.18);
+    border-radius:8px; padding:11px 12px; color:var(--paper); font-family:'Inter',sans-serif; font-size:14px;
+  }
+  .cambusa-form input::placeholder{color:var(--text-soft);}
+  .cambusa-form input:focus{outline:none; border-color:var(--teal);}
+  .cambusa-form button{
+    background:var(--coral); color:#fff; border:none; border-radius:8px; padding:0 20px;
+    font-family:'Inter',sans-serif; font-weight:600; font-size:14px; cursor:pointer;
+    transition:transform .15s;
+  }
+  .cambusa-form button:hover{transform:translateY(-1px);}
+  .cambusa-list{display:flex; flex-direction:column; gap:10px;}
+  .cambusa-item{
+    display:flex; align-items:center; gap:14px; background:var(--ink-2);
+    border:1px solid rgba(242,235,216,0.1); border-radius:12px; padding:14px 16px;
+  }
+  .cambusa-item .info{flex:1;}
+  .cambusa-item .info b{font-family:'Inter',sans-serif; font-size:15px; font-weight:600; color:var(--paper); display:block;}
+  .cambusa-item .info span{font-size:12px; color:var(--text-soft);}
+  .cambusa-item .qty{
+    font-family:'Space Mono',monospace; font-size:13px; color:var(--brass);
+    background:rgba(201,161,92,0.12); padding:4px 10px; border-radius:20px; white-space:nowrap;
+  }
+  .cambusa-item .del{
+    flex:none; width:30px; height:30px; border-radius:50%; border:none;
+    background:rgba(232,98,61,0.12); color:var(--coral); cursor:pointer;
+    display:flex; align-items:center; justify-content:center; transition:background .15s;
+  }
+  .cambusa-item .del:hover{background:var(--coral); color:#fff;}
+  .cambusa-item .del svg{width:14px; height:14px;}
+  .cambusa-empty{color:var(--text-soft); font-size:14px; padding:20px 4px; text-align:center;}
+  .fb-warning{
+    background:rgba(232,98,61,0.12); border-left:3px solid var(--coral); border-radius:0 8px 8px 0;
+    padding:14px 18px; font-size:13px; color:var(--paper); margin-bottom:20px; display:none;
+  }
+
+  /* ---------- SPESE ---------- */
   .tricount-card{
     display:flex; align-items:center; justify-content:space-between; gap:20px;
     background:linear-gradient(135deg, var(--ink-3), var(--ink-2));
-    border:1px solid rgba(242,235,216,0.12);
-    border-radius:14px;
-    padding:26px 28px;
-    flex-wrap:wrap;
+    border:1px solid rgba(242,235,216,0.12); border-radius:14px; padding:26px 28px; flex-wrap:wrap;
   }
   .tricount-card p{color:var(--text-soft); font-size:14px; margin-top:6px; max-width:36ch;}
   .btn{
-    display:inline-flex; align-items:center; gap:8px;
-    background:var(--coral); color:#fff;
+    display:inline-flex; align-items:center; gap:8px; background:var(--coral); color:#fff;
     font-family:'Inter',sans-serif; font-weight:600; font-size:14px;
-    padding:12px 22px; border-radius:30px; text-decoration:none;
-    white-space:nowrap;
-    transition:transform 0.15s, box-shadow 0.15s;
+    padding:12px 22px; border-radius:30px; text-decoration:none; white-space:nowrap;
+    transition:transform .15s, box-shadow .15s;
   }
   .btn:hover{transform:translateY(-2px); box-shadow:0 8px 20px rgba(232,98,61,0.35);}
   .btn:focus-visible{outline:2px solid var(--paper); outline-offset:3px;}
 
-  footer{
-    text-align:center; padding:48px 24px 64px;
-    color:var(--text-soft); font-size:13px;
-    font-family:'Space Mono',monospace;
-  }
+  footer{text-align:center; padding:48px 24px 64px; color:var(--text-soft); font-size:13px; font-family:'Space Mono',monospace;}
 
-  @media (prefers-reduced-motion:reduce){
-    html{scroll-behavior:auto;}
-    *{transition:none !important;}
-  }
+  @media (prefers-reduced-motion:reduce){ html{scroll-behavior:auto;} *{transition:none !important;} }
 
-  @media (max-width:520px){
-    .hero{padding:52px 20px 44px;}
-    section{padding:48px 0;}
-    .hero-meta{gap:20px;}
+  @media (max-width:560px){
+    .brand span.full{display:none;}
+    .tab-btn{padding:8px 8px;}
+    .tab-btn .lbl{font-size:9px;}
     .tricount-card{flex-direction:column; align-items:flex-start;}
+    .cambusa-form{flex-direction:column;}
   }
 </style>
 </head>
 <body>
 
-<div class="hero">
-  <div class="wave"></div>
-  <div class="hero-inner">
-    <div class="coords">40°0′N · 18°25′E — Castro Marina, Salento</div>
-    <h1 class="title">Rotta del<br><em>15 agosto</em></h1>
-    <p class="subline">Giornata in barca lungo la costa: Baia del Mulino d'Acqua, Porto Badisco e Grotta Zinzulusa. Tutti i dettagli, qui in un posto solo.</p>
-    <div class="hero-meta">
-      <div class="meta-item"><span class="k">Ritrovo</span><span class="v">8:30</span></div>
-      <div class="meta-item"><span class="k">Partenza</span><span class="v">9:00</span></div>
-      <div class="meta-item"><span class="k">Rientro barca</span><span class="v">17:17</span></div>
-      <div class="meta-item"><span class="k">Riconsegna entro</span><span class="v">19:00</span></div>
+<nav class="topnav">
+  <div class="topnav-inner">
+    <div class="brand"><span class="dot"></span><span class="full">Castro Marina</span></div>
+    <div class="tabs" id="tabs">
+      <button class="tab-btn active" data-page="home">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-7 9 7"/><path d="M5 10v9h14v-9"/></svg>
+        <span class="lbl">Home</span>
+      </button>
+      <button class="tab-btn" data-page="rotta">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M14.5 9.5l-2 5-5 2 2-5z"/></svg>
+        <span class="lbl">Rotta</span>
+      </button>
+      <button class="tab-btn" data-page="cambusa">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9h16l-1.5 10a2 2 0 01-2 1.7H7.5a2 2 0 01-2-1.7z"/><path d="M8 9V6a4 4 0 018 0v3"/></svg>
+        <span class="lbl">Cambusa</span>
+      </button>
+      <button class="tab-btn" data-page="spese">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.2c0-1.2 1.1-2.2 2.5-2.2s2.5.8 2.5 1.9-1 1.6-2.5 1.9-2.5 1-2.5 2.1 1.1 1.9 2.5 1.9 2.5-.9 2.5-2"/></svg>
+        <span class="lbl">Spese</span>
+      </button>
     </div>
+  </div>
+</nav>
+
+<!-- ============ HOME ============ -->
+<div class="page active" id="page-home">
+  <div class="tab-intro">
+    <div class="tab-intro-inner">
+      <div class="eyebrow">40°0′N · 18°25′E — Castro Marina, Salento</div>
+      <h1 class="tab-title">15 agosto</h1>
+      <p class="tab-desc">Gli orari chiave della giornata. Per la rotta completa e cosa portare, guarda le altre sezioni.</p>
+    </div>
+  </div>
+  <div class="wrap">
+    <div class="orari-grid">
+      <div class="orario-card"><span class="k">Ritrovo</span><span class="v">8:30</span></div>
+      <div class="orario-card"><span class="k">Partenza barca</span><span class="v">9:00</span></div>
+      <div class="orario-card"><span class="k">Rientro barca</span><span class="v">17:17</span></div>
+      <div class="orario-card"><span class="k">Riconsegna entro</span><span class="v">19:00</span></div>
+    </div>
+
+    <section id="dove">
+      <div class="section-head">
+        <h2 class="section-title">Dove parcheggiare e ritrovarsi</h2>
+      </div>
+      <div class="map-list">
+        <a class="map-link" href="https://maps.app.goo.gl/EMMejQTa348E1pq19" target="_blank" rel="noopener">
+          <div class="pin"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.5-7-11.5A7 7 0 0119 9.5C19 14.5 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.3"/></svg></div>
+          <div class="info"><b>Punto di ritrovo — Porto</b><span>Ritrovo alle 8:30, direttamente al porto</span></div>
+          <span class="go">apri mappa ↗</span>
+        </a>
+        <a class="map-link" href="https://maps.app.goo.gl/Gvq3DAdTPehwGF2MA" target="_blank" rel="noopener">
+          <div class="pin"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="12" rx="2"/><path d="M7 7V5a2 2 0 012-2h6a2 2 0 012 2v2"/></svg></div>
+          <div class="info"><b>Parcheggio 1 — Castro</b><span>Opzione principale, vicino al ritrovo</span></div>
+          <span class="go">apri mappa ↗</span>
+        </a>
+        <a class="map-link" href="https://maps.app.goo.gl/96Azr8pxTiVWjwo68" target="_blank" rel="noopener">
+          <div class="pin"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="12" rx="2"/><path d="M7 7V5a2 2 0 012-2h6a2 2 0 012 2v2"/></svg></div>
+          <div class="info"><b>Parcheggio 2 — Castro</b><span>Alternativa se il primo è pieno</span></div>
+          <span class="go">apri mappa ↗</span>
+        </a>
+        <a class="map-link" href="https://maps.app.goo.gl/VGMm8u4N9GUpFe248" target="_blank" rel="noopener">
+          <div class="pin"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="12" rx="2"/><path d="M7 7V5a2 2 0 012-2h6a2 2 0 012 2v2"/></svg></div>
+          <div class="info"><b>Parcheggio "leccese"</b><span>Per i più audaci — più lontano</span></div>
+          <span class="go">apri mappa ↗</span>
+        </a>
+      </div>
+    </section>
+
+    <section id="checklist">
+      <div class="section-head">
+        <h2 class="section-title">Cosa portare</h2>
+      </div>
+      <div class="checklist" id="checklist-list">
+        <div class="check-item" data-key="bagagli">
+          <div class="check-box"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5L4.5 8.5L11 1.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div class="check-text"><div class="check-label">Bagagli morbidi, non rigidi</div><div class="check-sub">In barca lo spazio è poco — ideale 1 borsa (anche grande) ogni 2 persone.</div></div>
+        </div>
+        <div class="check-item" data-key="materassino">
+          <div class="check-box"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5L4.5 8.5L11 1.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div class="check-text"><div class="check-label">Materassino / SUP</div></div>
+        </div>
+        <div class="check-item" data-key="maschera">
+          <div class="check-box"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5L4.5 8.5L11 1.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div class="check-text"><div class="check-label">Maschera + pinne</div></div>
+        </div>
+        <div class="check-item" data-key="crema">
+          <div class="check-box"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5L4.5 8.5L11 1.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div class="check-text"><div class="check-label">Crema solare</div></div>
+        </div>
+        <div class="check-item" data-key="xamamina">
+          <div class="check-box"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5L4.5 8.5L11 1.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div class="check-text"><div class="check-label">Xamamina</div><div class="check-sub">Per chi soffre il mare — da prendere ogni tot ore.</div><span class="tag-required">Obbligatoria</span></div>
+        </div>
+        <div class="check-item" data-key="cibo">
+          <div class="check-box"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5L4.5 8.5L11 1.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div class="check-text"><div class="check-label">Cibo e bevande</div><div class="check-sub">Gestiti a parte — occhio anche alla Cambusa!</div></div>
+        </div>
+      </div>
+    </section>
   </div>
 </div>
 
-<div class="wrap">
-
-  <section id="rotta">
-    <div class="section-head">
-      <div class="eyebrow">La rotta · ~13,7 nm totali</div>
-      <h2 class="section-title">Tappa per tappa</h2>
+<!-- ============ ROTTA ============ -->
+<div class="page" id="page-rotta">
+  <div class="tab-intro">
+    <div class="tab-intro-inner">
+      <div class="eyebrow">🧭 Navigazione · ~13,7 nm totali</div>
+      <h1 class="tab-title">La rotta</h1>
+      <p class="tab-desc">Tappa per tappa: Baia del Mulino d'Acqua, Porto Badisco e Grotta Zinzulusa, con orari di partenza e arrivo.</p>
     </div>
-
-    <div class="route">
-      <div class="route-line"></div>
-
-      <div class="stop">
-        <div class="stop-dot"></div>
-        <div class="stop-time">9:00</div>
-        <div class="stop-card">
-          <div class="stop-name">Partenza da Castro Marina</div>
+  </div>
+  <div class="wrap">
+    <section>
+      <div class="route">
+        <div class="route-line"></div>
+        <div class="stop">
+          <div class="stop-dot"></div>
+          <div class="stop-time">9:00</div>
+          <div class="stop-card"><div class="stop-name">Partenza da Castro Marina</div></div>
+        </div>
+        <div class="stop transfer">
+          <div class="stop-dot"></div>
+          <div class="stop-time">9:00 → 9:26 · navigazione</div>
+        </div>
+        <div class="stop">
+          <div class="stop-dot"></div>
+          <div class="stop-time">9:26 – 15:00</div>
+          <div class="stop-card">
+            <div class="stop-name">Baia del Mulino d'Acqua</div>
+            <div class="stop-desc">Sosta 1 — circa 5h30. Bagno, snorkeling, grotte e pranzo a bordo.</div>
+            <span class="badge">Sosta lunga</span>
+          </div>
+        </div>
+        <div class="stop transfer">
+          <div class="stop-dot"></div>
+          <div class="stop-time">15:00 → 15:15 · navigazione</div>
+        </div>
+        <div class="stop">
+          <div class="stop-dot"></div>
+          <div class="stop-time">15:15 – 16:15</div>
+          <div class="stop-card"><div class="stop-name">Porto Badisco</div><div class="stop-desc">Sosta 2 — circa 1h. Bagno e relax.</div></div>
+        </div>
+        <div class="stop transfer">
+          <div class="stop-dot"></div>
+          <div class="stop-time">16:15 → 16:51 · navigazione (4,8 nm)</div>
+        </div>
+        <div class="stop">
+          <div class="stop-dot"></div>
+          <div class="stop-time">16:51 – 17:15</div>
+          <div class="stop-card">
+            <div class="stop-name">Grotta Zinzulusa</div>
+            <div class="stop-desc">Sosta 3 — circa 25 min. Visita rapida, quasi sulla strada del rientro.</div>
+            <span class="badge">Ultima sosta</span>
+          </div>
+        </div>
+        <div class="stop transfer">
+          <div class="stop-dot"></div>
+          <div class="stop-time">17:15 → 17:17 · navigazione (0,3 nm)</div>
+        </div>
+        <div class="stop">
+          <div class="stop-dot"></div>
+          <div class="stop-time">17:17</div>
+          <div class="stop-card"><div class="stop-name">Rientro a Castro Marina</div><div class="stop-desc">Margine prima della riconsegna (19:00): circa 1h45, comodo per imprevisti.</div></div>
         </div>
       </div>
+      <div class="note-box"><b>Nota pratica —</b> alla Zinzulusa in alta stagione c'è traffico di barche e gommoni all'ingresso della grotta. Con 25 minuti si riesce a vedere dall'esterno/entrata; per esplorarla con calma, meglio accorciare leggermente la sosta a Porto Badisco.</div>
+    </section>
+  </div>
+</div>
 
-      <div class="stop transfer">
-        <div class="stop-dot"></div>
-        <div class="stop-time">9:00 → 9:26 · navigazione</div>
-      </div>
-
-      <div class="stop">
-        <div class="stop-dot"></div>
-        <div class="stop-time">9:26 – 15:00</div>
-        <div class="stop-card">
-          <div class="stop-name">Baia del Mulino d'Acqua</div>
-          <div class="stop-desc">Sosta 1 — circa 5h30. Bagno, snorkeling, grotte e pranzo a bordo.</div>
-          <span class="badge">Sosta lunga</span>
-        </div>
-      </div>
-
-      <div class="stop transfer">
-        <div class="stop-dot"></div>
-        <div class="stop-time">15:00 → 15:15 · navigazione</div>
-      </div>
-
-      <div class="stop">
-        <div class="stop-dot"></div>
-        <div class="stop-time">15:15 – 16:15</div>
-        <div class="stop-card">
-          <div class="stop-name">Porto Badisco</div>
-          <div class="stop-desc">Sosta 2 — circa 1h. Bagno e relax.</div>
-        </div>
-      </div>
-
-      <div class="stop transfer">
-        <div class="stop-dot"></div>
-        <div class="stop-time">16:15 → 16:51 · navigazione (4,8 nm)</div>
-      </div>
-
-      <div class="stop">
-        <div class="stop-dot"></div>
-        <div class="stop-time">16:51 – 17:15</div>
-        <div class="stop-card">
-          <div class="stop-name">Grotta Zinzulusa</div>
-          <div class="stop-desc">Sosta 3 — circa 25 min. Visita rapida, quasi sulla strada del rientro.</div>
-          <span class="badge">Ultima sosta</span>
-        </div>
-      </div>
-
-      <div class="stop transfer">
-        <div class="stop-dot"></div>
-        <div class="stop-time">17:15 → 17:17 · navigazione (0,3 nm)</div>
-      </div>
-
-      <div class="stop">
-        <div class="stop-dot"></div>
-        <div class="stop-time">17:17</div>
-        <div class="stop-card">
-          <div class="stop-name">Rientro a Castro Marina</div>
-          <div class="stop-desc">Margine prima della riconsegna (19:00): circa 1h45, comodo per imprevisti.</div>
-        </div>
-      </div>
-
+<!-- ============ CAMBUSA ============ -->
+<div class="page" id="page-cambusa">
+  <div class="tab-intro">
+    <div class="tab-intro-inner">
+      <div class="eyebrow">🧺 Dispensa di bordo</div>
+      <h1 class="tab-title">Cambusa</h1>
+      <p class="tab-desc">La cambusa è la scorta di cibo e bevande della barca. Aggiungi qui cosa porti — chiunque può aggiungere o togliere una voce, così evitiamo doppioni.</p>
     </div>
+  </div>
+  <div class="wrap">
+    <section>
+      <div class="fb-warning" id="fb-warning">
+        ⚠️ Il database non è ancora configurato: aggiungi le tue chiavi Firebase in <code>firebaseConfig</code> nel file <code>index.html</code> per rendere la Cambusa condivisa e in tempo reale.
+      </div>
+      <form class="cambusa-form" id="cambusa-form">
+        <input type="text" id="c-nome" placeholder="Cosa porti (es. Acqua)" required>
+        <input type="text" id="c-qty" placeholder="Quantità (es. 3 bottiglie)">
+        <input type="text" id="c-chi" placeholder="Chi lo porta">
+        <button type="submit">Aggiungi</button>
+      </form>
+      <div class="cambusa-list" id="cambusa-list">
+        <div class="cambusa-empty">Ancora nessuna voce — sii il primo ad aggiungerla.</div>
+      </div>
+    </section>
+  </div>
+</div>
 
-    <div class="note-box">
-      <b>Nota pratica —</b> alla Zinzulusa in alta stagione c'è traffico di barche e gommoni all'ingresso della grotta. Con 25 minuti si riesce a vedere dall'esterno/entrata; per esplorarla con calma, meglio accorciare leggermente la sosta a Porto Badisco.
+<!-- ============ SPESE ============ -->
+<div class="page" id="page-spese">
+  <div class="tab-intro">
+    <div class="tab-intro-inner">
+      <div class="eyebrow">€ Conti di gruppo</div>
+      <h1 class="tab-title">Spese</h1>
+      <p class="tab-desc">Tutte le spese della giornata, condivise in un Tricount unico per il gruppo.</p>
     </div>
-  </section>
-
-  <section id="checklist">
-    <div class="section-head">
-      <div class="eyebrow">Prima di partire</div>
-      <h2 class="section-title">Cosa portare</h2>
-    </div>
-
-    <div class="checklist" id="checklist-list">
-      <div class="check-item" data-key="bagagli">
-        <div class="check-box"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5L4.5 8.5L11 1.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-        <div class="check-text">
-          <div class="check-label">Bagagli morbidi, non rigidi</div>
-          <div class="check-sub">In barca lo spazio è poco — ideale 1 borsa (anche grande) ogni 2 persone.</div>
+  </div>
+  <div class="wrap">
+    <section>
+      <div class="tricount-card">
+        <div>
+          <div class="stop-name" style="font-size:19px;">Tutte le spese in un posto solo</div>
+          <p>Il gruppo Tricount è già attivo — apri il link per aggiungere le tue spese o controllare i saldi.</p>
         </div>
+        <a class="btn" href="https://tricount.com/trHzMcqLnlAXXRuywz" target="_blank" rel="noopener">Apri Tricount ↗</a>
       </div>
-      <div class="check-item" data-key="materassino">
-        <div class="check-box"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5L4.5 8.5L11 1.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-        <div class="check-text"><div class="check-label">Materassino / SUP</div></div>
-      </div>
-      <div class="check-item" data-key="maschera">
-        <div class="check-box"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5L4.5 8.5L11 1.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-        <div class="check-text"><div class="check-label">Maschera + pinne</div></div>
-      </div>
-      <div class="check-item" data-key="crema">
-        <div class="check-box"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5L4.5 8.5L11 1.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-        <div class="check-text"><div class="check-label">Crema solare</div></div>
-      </div>
-      <div class="check-item" data-key="xamamina">
-        <div class="check-box"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5L4.5 8.5L11 1.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-        <div class="check-text">
-          <div class="check-label">Xamamina</div>
-          <div class="check-sub">Per chi soffre il mare — da prendere ogni tot ore.</div>
-          <span class="tag-required">Obbligatoria</span>
-        </div>
-      </div>
-      <div class="check-item" data-key="cibo">
-        <div class="check-box"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5L4.5 8.5L11 1.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-        <div class="check-text">
-          <div class="check-label">Cibo e bevande</div>
-          <div class="check-sub">Gestiti a parte, ci si organizza insieme.</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="spese">
-    <div class="section-head">
-      <div class="eyebrow">Spese condivise</div>
-      <h2 class="section-title">Tricount del gruppo</h2>
-    </div>
-    <div class="tricount-card">
-      <div>
-        <div class="stop-name" style="font-size:19px;">Tutte le spese in un posto solo</div>
-        <p>Il gruppo Tricount è già attivo — apri il link per aggiungere le tue spese o controllare i saldi.</p>
-      </div>
-      <a class="btn" href="https://tricount.com/trHzMcqLnlAXXRuywz" target="_blank" rel="noopener">Apri Tricount ↗</a>
-    </div>
-  </section>
-
+    </section>
+  </div>
 </div>
 
 <footer>⚓ Buona gita — Castro Marina, 15 agosto</footer>
 
+<!-- Firebase (per la Cambusa condivisa) -->
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
 <script>
+  /* ============ TAB NAVIGATION ============ */
+  const tabBtns = document.querySelectorAll('.tab-btn');
+  const pages = document.querySelectorAll('.page');
+  function showPage(name){
+    pages.forEach(p => p.classList.toggle('active', p.id === 'page-' + name));
+    tabBtns.forEach(b => b.classList.toggle('active', b.dataset.page === name));
+    window.scrollTo({top:0, behavior:'instant' in window ? 'instant' : 'auto'});
+    history.replaceState(null, '', '#' + name);
+  }
+  tabBtns.forEach(btn => btn.addEventListener('click', () => showPage(btn.dataset.page)));
+  const initial = (location.hash || '#home').replace('#','');
+  if(document.getElementById('page-' + initial)) showPage(initial);
+
+  /* ============ CHECKLIST ============ */
   document.querySelectorAll('.check-item').forEach(function(item){
-    item.addEventListener('click', function(){
-      item.classList.toggle('done');
-    });
     item.setAttribute('tabindex', '0');
     item.setAttribute('role', 'checkbox');
     item.setAttribute('aria-checked', 'false');
-    item.addEventListener('keydown', function(e){
-      if(e.key === 'Enter' || e.key === ' '){
-        e.preventDefault();
-        item.click();
-      }
-    });
-    item.addEventListener('click', function(){
+    function toggle(){
+      item.classList.toggle('done');
       item.setAttribute('aria-checked', item.classList.contains('done') ? 'true' : 'false');
+    }
+    item.addEventListener('click', toggle);
+    item.addEventListener('keydown', function(e){
+      if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); toggle(); }
     });
   });
+
+  /* ============ CAMBUSA (Firebase Realtime Database) ============
+     1. Crea un progetto gratuito su https://console.firebase.google.com
+     2. Attiva "Realtime Database" (modalità test, oppure con le regole in fondo a questo file)
+     3. Copia qui sotto la configurazione del tuo progetto (Project settings → SDK setup and config)
+  */
+  const firebaseConfig = {
+    apiKey: "YOUR_API_KEY",
+    authDomain: "YOUR_PROJECT.firebaseapp.com",
+    databaseURL: "https://YOUR_PROJECT-default-rtdb.firebaseio.com",
+    projectId: "YOUR_PROJECT",
+  };
+
+  const cambusaForm = document.getElementById('cambusa-form');
+  const cambusaList = document.getElementById('cambusa-list');
+  const fbWarning = document.getElementById('fb-warning');
+
+  const isConfigured = firebaseConfig.apiKey && !firebaseConfig.apiKey.includes('YOUR_');
+
+  if(!isConfigured){
+    fbWarning.style.display = 'block';
+    cambusaForm.querySelectorAll('input, button').forEach(el => el.disabled = true);
+  } else {
+    firebase.initializeApp(firebaseConfig);
+    const cambusaRef = firebase.database().ref('cambusa');
+
+    cambusaRef.on('value', function(snapshot){
+      const data = snapshot.val();
+      cambusaList.innerHTML = '';
+      if(!data){
+        cambusaList.innerHTML = '<div class="cambusa-empty">Ancora nessuna voce — sii il primo ad aggiungerla.</div>';
+        return;
+      }
+      Object.entries(data)
+        .sort((a,b) => (a[1].createdAt||0) - (b[1].createdAt||0))
+        .forEach(function([key, item]){
+          const row = document.createElement('div');
+          row.className = 'cambusa-item';
+          row.innerHTML =
+            '<div class="info"><b>' + escapeHtml(item.nome || '') + '</b>' +
+            '<span>' + (item.chiPorta ? 'porta: ' + escapeHtml(item.chiPorta) : 'chi porta: da definire') + '</span></div>' +
+            (item.quantita ? '<span class="qty">' + escapeHtml(item.quantita) + '</span>' : '') +
+            '<button class="del" aria-label="Rimuovi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>';
+          row.querySelector('.del').addEventListener('click', function(){
+            cambusaRef.child(key).remove();
+          });
+          cambusaList.appendChild(row);
+        });
+    });
+
+    cambusaForm.addEventListener('submit', function(e){
+      e.preventDefault();
+      const nome = document.getElementById('c-nome').value.trim();
+      const qty = document.getElementById('c-qty').value.trim();
+      const chi = document.getElementById('c-chi').value.trim();
+      if(!nome) return;
+      cambusaRef.push({ nome: nome, quantita: qty, chiPorta: chi, createdAt: Date.now() });
+      cambusaForm.reset();
+      document.getElementById('c-nome').focus();
+    });
+  }
+
+  function escapeHtml(str){
+    const d = document.createElement('div');
+    d.textContent = str;
+    return d.innerHTML;
+  }
+
+  /* Regole consigliate per Realtime Database (Rules tab):
+  {
+    "rules": {
+      "cambusa": {
+        ".read": true,
+        ".write": true
+      }
+    }
+  }
+  Nota: regole aperte in lettura/scrittura vanno bene per una lista non sensibile
+  come questa, ma chiunque abbia il link potrà modificarla.
+  */
 </script>
 
 </body>
